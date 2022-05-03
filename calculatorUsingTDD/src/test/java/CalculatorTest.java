@@ -20,7 +20,7 @@ public class CalculatorTest {
     }
 
     @Test
-    public void additionTest() {
+    public void additionTestBasic() {
         Assert.assertEquals(0, Add(""));
         Assert.assertEquals(1, Add("1"));
         Assert.assertEquals(762, Add("762"));
@@ -28,6 +28,10 @@ public class CalculatorTest {
         Assert.assertEquals(1030, Add("1026,4"));
         Assert.assertEquals(14, Add("2,4,8"));
         Assert.assertEquals(18, Add("3,6,7,2"));
+    }
+    @Test
+    public void additionTestWithNewLine() {
+        Assert.assertEquals(6, Add("2\n4"));
     }
 
 }
