@@ -18,11 +18,16 @@ public class CalculatorTest {
             String[] nums = numbers.split(delimiter);
             int sum = 0;
             int i = 0;
+            String message = "";
             while (i < nums.length) {
                 if (Integer.parseInt(nums[i]) < 0)
-                    throw new Exception("negatives not allowed " + Integer.parseInt(nums[i]));
+                    message += Integer.parseInt(nums[i])+",";
                 sum += Integer.parseInt(nums[i]);
                 i++;
+            }
+            if (message.length() > 0) {
+                message = message.replaceAll(",$","");
+                throw new Exception("negatives not allowed " + message);
             }
             return sum;
         }
@@ -72,6 +77,13 @@ public class CalculatorTest {
         };
         Exception exception2 = Assert.assertThrows(Exception.class, runnable2);
         Assert.assertEquals("negatives not allowed -3,-8,-2", exception2.getMessage());
+        ThrowingRunnable runnable3 = new ThrowingRunnable() {
+            public void run() throws Throwable {
+                Add("-3,-2,-9,-8,-2");
+            }
+        };
+        Exception exception3 = Assert.assertThrows(Exception.class, runnable3);
+        Assert.assertEquals("negatives not allowed -3,-2,-9,-8,-2", exception3.getMessage());
     }
 
     @Test
