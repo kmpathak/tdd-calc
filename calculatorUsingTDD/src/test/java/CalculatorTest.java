@@ -5,13 +5,13 @@ import org.junit.function.ThrowingRunnable;
 
 public class CalculatorTest {
 
-    int Add(String numbers) {
+    int Add(String numbers) throws Exception {
         if (numbers.length() == 0)
             return 0;
         else {
             String delimiter = "";
             if (numbers.startsWith("//")) {
-                delimiter = numbers.substring(2,3);
+                delimiter = numbers.substring(2, 3);
                 numbers = numbers.substring(4);
             } else
                 delimiter = ",|\n";
@@ -19,6 +19,8 @@ public class CalculatorTest {
             int sum = 0;
             int i = 0;
             while (i < nums.length) {
+                if (Integer.parseInt(nums[i]) < 0)
+                    throw new Exception("negatives not allowed " + Integer.parseInt(nums[i]));
                 sum += Integer.parseInt(nums[i]);
                 i++;
             }
@@ -27,7 +29,7 @@ public class CalculatorTest {
     }
 
     @Test
-    public void additionTestBasic() {
+    public void additionTestBasic() throws Exception {
         Assert.assertEquals(0, Add(""));
         Assert.assertEquals(1, Add("1"));
         Assert.assertEquals(762, Add("762"));
@@ -38,7 +40,7 @@ public class CalculatorTest {
     }
 
     @Test
-    public void additionTestWithNewLine() {
+    public void additionTestWithNewLine() throws Exception {
         Assert.assertEquals(6, Add("2\n4"));
         Assert.assertEquals(14, Add("2\n5,7"));
         Assert.assertEquals(15, Add("3,5\n7"));
@@ -46,13 +48,14 @@ public class CalculatorTest {
     }
 
     @Test
-    public void additionTestWithDifferentDelimiters() {
+    public void additionTestWithDifferentDelimiters() throws Exception {
         Assert.assertEquals(6, Add("//;\n2;4"));
         Assert.assertEquals(6, Add("//:\n2:4"));
         Assert.assertEquals(11, Add("//:\n2:4:5"));
         Assert.assertEquals(11, Add("//\n\n2\n4\n5"));
         Assert.assertEquals(11, Add("//,\n2,4,5"));
     }
+
     @Test
     public void additionTestWithNegativeNumbers() {
         ThrowingRunnable runnable = new ThrowingRunnable() {
@@ -60,11 +63,12 @@ public class CalculatorTest {
                 Add("-3");
             }
         };
-        Exception exception1 = Assert.assertThrows(Exception.class,runnable);
-        Assert.assertEquals("negatives not allowed -3",exception1.getMessage());
+        Exception exception1 = Assert.assertThrows(Exception.class, runnable);
+        Assert.assertEquals("negatives not allowed -3", exception1.getMessage());
     }
+
     @Test
-    public void executeAllTestCases() {
+    public void executeAllTestCases() throws Exception {
         additionTestBasic();
         additionTestWithNewLine();
         additionTestWithDifferentDelimiters();
