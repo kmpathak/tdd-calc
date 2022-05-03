@@ -1,5 +1,6 @@
 import org.junit.Assert;
 import org.junit.Test;
+import org.junit.function.ThrowingRunnable;
 
 
 public class CalculatorTest {
@@ -51,5 +52,22 @@ public class CalculatorTest {
         Assert.assertEquals(11, Add("//:\n2:4:5"));
         Assert.assertEquals(11, Add("//\n\n2\n4\n5"));
         Assert.assertEquals(11, Add("//,\n2,4,5"));
+    }
+    @Test
+    public void additionTestWithNegativeNumbers() {
+        ThrowingRunnable runnable = new ThrowingRunnable() {
+            public void run() throws Throwable {
+                Add("-3");
+            }
+        };
+        Exception exception1 = Assert.assertThrows(Exception.class,runnable);
+        Assert.assertEquals("negatives not allowed -3",exception1.getMessage());
+    }
+    @Test
+    public void executeAllTestCases() {
+        additionTestBasic();
+        additionTestWithNewLine();
+        additionTestWithDifferentDelimiters();
+        additionTestWithNegativeNumbers();
     }
 }
