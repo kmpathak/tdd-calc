@@ -8,7 +8,8 @@ public class CalculatorTest {
         if (numbers.length() == 0)
             return 0;
         else {
-            String[] nums = numbers.split(",");
+            String delimiter = ",|\n";
+            String[] nums = numbers.split(delimiter);
             int sum = 0;
             int i = 0;
             while (i < nums.length) {
@@ -32,6 +33,8 @@ public class CalculatorTest {
     @Test
     public void additionTestWithNewLine() {
         Assert.assertEquals(6, Add("2\n4"));
+        Assert.assertEquals(14, Add("2\n5,7"));
+        Assert.assertEquals(15, Add("3,5\n7"));
     }
 
 }
