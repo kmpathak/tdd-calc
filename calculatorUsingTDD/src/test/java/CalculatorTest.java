@@ -36,6 +36,7 @@ public class CalculatorTest {
         Assert.assertEquals(6, Add("2\n4"));
         Assert.assertEquals(14, Add("2\n5,7"));
         Assert.assertEquals(15, Add("3,5\n7"));
+        Assert.assertEquals(21, Add("3,5\n7\n6"));
     }
     @Test
     public void additionTestWithDifferentDelimiters() {
