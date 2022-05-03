@@ -17,6 +17,7 @@ public class CalculatorTest {
         Assert.assertEquals(0, Add(""));
         Assert.assertEquals(1, Add("1"));
         Assert.assertEquals(762, Add("762"));
+        Assert.assertEquals(5,Add("2,3"));
     }
 
 }
