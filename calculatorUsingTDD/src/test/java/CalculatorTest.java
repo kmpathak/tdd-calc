@@ -11,7 +11,15 @@ public class CalculatorTest {
             String[] nums = numbers.split(",");
             if(nums.length==1)
                 return Integer.parseInt(nums[0]);
-            else return (Integer.parseInt(nums[0])+Integer.parseInt(nums[1]));
+            else {
+                int sum =0;
+                int i=0;
+                while(i<nums.length){
+                    sum+=Integer.parseInt(nums[i]);
+                    i++;
+                }
+                return sum;
+            }
 
         }
     }
@@ -24,6 +32,7 @@ public class CalculatorTest {
         Assert.assertEquals(5,Add("2,3"));
         Assert.assertEquals(1030,Add("1026,4"));
         Assert.assertEquals(14,Add("2,4,8"));
+        Assert.assertEquals(18,Add("3,6,7,2"));
     }
 
 }
