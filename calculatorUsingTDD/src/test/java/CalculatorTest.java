@@ -8,8 +8,12 @@ public class CalculatorTest {
         if (numbers.length() == 0)
             return 0;
         else {
-            String delimiter = numbers.substring(2,3);
-            numbers = numbers.substring(4);
+            String delimiter = "";
+            if (numbers.startsWith("//")) {
+                delimiter = numbers.substring(2,3);
+                numbers = numbers.substring(4);
+            } else
+                delimiter = ",|\n";
             String[] nums = numbers.split(delimiter);
             int sum = 0;
             int i = 0;
@@ -31,6 +35,7 @@ public class CalculatorTest {
         Assert.assertEquals(14, Add("2,4,8"));
         Assert.assertEquals(18, Add("3,6,7,2"));
     }
+
     @Test
     public void additionTestWithNewLine() {
         Assert.assertEquals(6, Add("2\n4"));
@@ -38,6 +43,7 @@ public class CalculatorTest {
         Assert.assertEquals(15, Add("3,5\n7"));
         Assert.assertEquals(21, Add("3,5\n7\n6"));
     }
+
     @Test
     public void additionTestWithDifferentDelimiters() {
         Assert.assertEquals(6, Add("//;\n2;4"));
