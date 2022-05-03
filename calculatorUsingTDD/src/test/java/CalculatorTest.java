@@ -20,13 +20,13 @@ public class CalculatorTest {
             int i = 0;
             String message = "";
             while (i < nums.length) {
-                if (Integer.parseInt(nums[i]) < 0)
-                    message += Integer.parseInt(nums[i])+",";
-                sum += Integer.parseInt(nums[i]);
-                i++;
+                int num = Integer.parseInt(nums[i++]);
+                if (num < 0)
+                    message += num + ",";
+                sum += num;
             }
             if (message.length() > 0) {
-                message = message.replaceAll(",$","");
+                message = message.replaceAll(",$", "");
                 throw new Exception("negatives not allowed " + message);
             }
             return sum;
