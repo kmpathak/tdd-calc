@@ -65,6 +65,13 @@ public class CalculatorTest {
         };
         Exception exception1 = Assert.assertThrows(Exception.class, runnable);
         Assert.assertEquals("negatives not allowed -3", exception1.getMessage());
+        ThrowingRunnable runnable2 = new ThrowingRunnable() {
+            public void run() throws Throwable {
+                Add("-3,2,9,-8,-2");
+            }
+        };
+        Exception exception2 = Assert.assertThrows(Exception.class, runnable2);
+        Assert.assertEquals("negatives not allowed -3,-8,-2", exception2.getMessage());
     }
 
     @Test
