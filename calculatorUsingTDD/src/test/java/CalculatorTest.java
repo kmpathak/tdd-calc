@@ -23,6 +23,7 @@ public class CalculatorTest {
         Assert.assertEquals(762, Add("762"));
         Assert.assertEquals(5,Add("2,3"));
         Assert.assertEquals(1030,Add("1026,4"));
+        Assert.assertEquals(14,Add("2,4,8"));
     }
 
 }
