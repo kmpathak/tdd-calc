@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/Calculator based on TDD.iml" filepath="$PROJECT_DIR$/.idea/Calculator based on TDD.iml" />
-      <module fileurl="file://$PROJECT_DIR$/calculatorUsingTDD/calculatorUsingTDD.iml" filepath="$PROJECT_DIR$/calculatorUsingTDD/calculatorUsingTDD.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/tdd-calc.iml" filepath="$PROJECT_DIR$/.idea/tdd-calc.iml" />
     </modules>
   </component>
 </project>
